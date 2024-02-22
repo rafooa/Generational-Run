@@ -25,7 +25,7 @@ public class PlayerScript : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
         if (isGrounded && !isParrying)
             anim.runtimeAnimatorController = runAnim;
-
+        
         if (Input.GetButton("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(0, jumpForce);
@@ -35,6 +35,16 @@ public class PlayerScript : MonoBehaviour
         else if(Input.GetKey(KeyCode.Q) && isGrounded && !isParrying)
         {
             StartCoroutine(ParryAttack());
+        }
+        else if (Input.GetKey("d"))
+        {
+            //move right
+            transform.position += transform.right * 3 * Time.deltaTime;
+        }
+        else if (Input.GetKey("a"))
+        {
+            //move left
+            transform.position += -transform.right * 3 * Time.deltaTime;
         }
     }
     IEnumerator ParryAttack()
