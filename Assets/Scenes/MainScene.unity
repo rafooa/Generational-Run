@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 10
-  recentreSpeed: 0.8
+  recentreSpeed: 0.1
   isGrounded: 0
   isParrying: 0
   rb: {fileID: 633046726}

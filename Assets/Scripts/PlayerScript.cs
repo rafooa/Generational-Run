@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
         if (isGrounded && !isParrying)
         {
             anim.runtimeAnimatorController = runAnim;
-            rb.MovePosition(Vector2.Lerp(playerpos.position, new Vector2(0, playerpos.position.y), Time.fixedDeltaTime*recentreSpeed));
+            rb.MovePosition(Vector2.Lerp(playerpos.position, new Vector2(-6.38f, playerpos.position.y), Time.fixedDeltaTime*recentreSpeed));
         }
             
 
