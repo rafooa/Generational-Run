@@ -21,30 +21,30 @@ public class LaserMovement : MonoBehaviour
         transform.Translate(Vector2.left * turrGen.currSpeed * Time.deltaTime);
     }
 
-/*    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("TESTING 1");
-        if (collision.gameObject.name == "StartLine" || collision.gameObject.CompareTag("StartLine"))
-        {
-            turrGen.GenerateLaser();
-        }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    Debug.Log("TESTING 1");
+    //    if (collision.gameObject.name == "StartLine" || collision.gameObject.CompareTag("StartLine"))
+    //    {
+    //        turrGen.GenerateLaser();
+    //    }
 
-        if (collision.gameObject.CompareTag("FinishLine"))
-        {
-            Destroy(this.gameObject);
-        }
+    //    if (collision.gameObject.CompareTag("FinishLine"))
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("TESTINGGGGGGG");
-        }
-    }
-*/
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        Debug.Log("TESTINGGGGGGG");
+    //    }
+    //}
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("TESTING 2");
-        if (collision.gameObject.name == "StartLine" || collision.gameObject.CompareTag("StartLine"))
+        if (collision.gameObject.CompareTag("StartLine"))
         {
             turrGen.GenerateLaser();
         }
