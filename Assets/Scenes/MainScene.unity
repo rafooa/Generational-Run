@@ -219,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 633046723}
   body: {fileID: 633046726}
+  jumpEffect: {fileID: 2084887085019394493, guid: 57be4ef220476f9459ab71f65386b07b, type: 3}
 --- !u!4 &226757230
 Transform:
   m_ObjectHideFlags: 0
