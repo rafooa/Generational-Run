@@ -227,7 +227,7 @@ public class HeroKnight : MonoBehaviour
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 1.5f && !m_rolling) // CHANGED TIME SINCE ATTACK FOR PARRY COOLDOWN
         {
             m_currentAttack++;
 
@@ -235,9 +235,7 @@ public class HeroKnight : MonoBehaviour
             if (m_currentAttack > 3)
                 m_currentAttack = 1;
 
-            // Reset Attack combo if time since last attack is too large
-            if (m_timeSinceAttack > 1.0f)
-                m_currentAttack = 1;
+            // REMOVED RESET COMBO
 
             // Call one of three attack animations "Attack1", "Attack2", "Attack3"
             m_animator.SetTrigger("Attack" + m_currentAttack);
