@@ -196,7 +196,7 @@ public class HeroKnight : MonoBehaviour
         else if (inputX < 0)
         {
             speed = leftspeed;
-            GetComponent<SpriteRenderer>().flipX = true;
+            //GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
         }
         //Debug.Log(inputX);
@@ -272,7 +272,14 @@ public class HeroKnight : MonoBehaviour
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
-            m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
+            if (gravityOn)
+            {
+                m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
+            }
+            else
+            {
+                m_body2d.velocity = new Vector2(m_body2d.velocity.x, -m_jumpForce);
+            }
             m_groundSensor.Disable(0.2f);
         }
 
@@ -315,7 +322,7 @@ public class HeroKnight : MonoBehaviour
                 usage = timeU;
                 gravityOn = true;
                 cooldownON = true;
-                m_body2d.gravityScale = 3;
+                m_body2d.gravityScale = (float)1.5;
                 src.PlayOneShot(clip2);
                 StartCoroutine(flip(gravityOn));
             }
@@ -337,16 +344,16 @@ public class HeroKnight : MonoBehaviour
         if (Input.GetKeyDown("1") && gravityOn == true && cooldownON == false && m_grounded == true)
         {
             gravityOn = false;
-            m_body2d.gravityScale = (float)-4;
+            m_body2d.gravityScale = (float)-2;
             src.PlayOneShot(clip1);
             StartCoroutine(flip(gravityOn));
         }
-        if (Input.GetKeyDown("space") && gravityOn == false)
+        if (Input.GetKeyDown("2") && gravityOn == false)
         {
             gravityOn = true;
             usage = timeU;
             cooldownON = true;
-            m_body2d.gravityScale = 3;
+            m_body2d.gravityScale = (float)1.5;
             src.PlayOneShot(clip2);
             StartCoroutine(flip(gravityOn));
         }
@@ -358,10 +365,10 @@ public class HeroKnight : MonoBehaviour
         dust.Play();
         if (grav == true)
         {
-            yield return new WaitForSeconds((float)0.2);
-            if (gameObject.transform.position.y > 4.4)
+            yield return new WaitForSeconds((float)0.4);
+//            if (gameObject.transform.position.y > 4.4)
             {
-                gameObject.transform.position = new Vector2(gameObject.transform.position.x, (float)-3.9);
+//                gameObject.transform.position = new Vector2(gameObject.transform.position.x, (float)-3.9);
             }
             gameObject.transform.Rotate(-180, 0, 0);
         }
