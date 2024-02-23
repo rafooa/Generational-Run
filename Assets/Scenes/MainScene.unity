@@ -389,10 +389,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1446682907731893603, guid: 4569a232d1e73a041ab17c01cd6b07da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1da5f526266700f4d81607c638bc72fc, type: 2}
+    - target: {fileID: 3261353779932365968, guid: 4569a232d1e73a041ab17c01cd6b07da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bb4af5fa8a0a0b046aa20778f63c5259, type: 2}
     - target: {fileID: 4897583708146359335, guid: 4569a232d1e73a041ab17c01cd6b07da, type: 3}
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 5224453793436530017, guid: 4569a232d1e73a041ab17c01cd6b07da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b2ecee3509e0d60428af19d72725a957, type: 2}
     - target: {fileID: 6863745762237227272, guid: 4569a232d1e73a041ab17c01cd6b07da, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -579,6 +591,10 @@ PrefabInstance:
     - target: {fileID: 2458280117918783578, guid: f9016b62846ab6f4cb9d5278a4ad0953, type: 3}
       propertyPath: m_Name
       value: objDestructor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2458280117918783578, guid: f9016b62846ab6f4cb9d5278a4ad0953, type: 3}
+      propertyPath: m_TagString
+      value: FinishLine
       objectReference: {fileID: 0}
     - target: {fileID: 4919485169344178323, guid: f9016b62846ab6f4cb9d5278a4ad0953, type: 3}
       propertyPath: m_RootOrder
