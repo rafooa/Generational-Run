@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.ParticleSystemJobs;
 
 public class HeroKnight : MonoBehaviour {
 
@@ -26,6 +27,8 @@ public class HeroKnight : MonoBehaviour {
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
 
+    public bool isAttacking = false;
+    private float parryWindow = 0.5f;
 
     // Use this for initialization
     void Start ()
@@ -42,6 +45,7 @@ public class HeroKnight : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -107,20 +111,23 @@ public class HeroKnight : MonoBehaviour {
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 1.5f && !m_rolling)
         {
-            m_currentAttack++;
+            //m_currentAttack++;
 
-            // Loop back to one after third attack
-            if (m_currentAttack > 3)
-                m_currentAttack = 1;
+            //// Loop back to one after third attack
+            //if (m_currentAttack > 3)
+            //    m_currentAttack = 1;
 
-            // Reset Attack combo if time since last attack is too large
-            if (m_timeSinceAttack > 1.0f)
-                m_currentAttack = 1;
+            //// Reset Attack combo if time since last attack is too large
+            //if (m_timeSinceAttack > 1.0f)
+            //    m_currentAttack = 1;
+
+            m_currentAttack = 1;
 
             // Call one of three attack animations "Attack1", "Attack2", "Attack3"
             m_animator.SetTrigger("Attack" + m_currentAttack);
+            StartCoroutine(ParryAttack());
 
             // Reset timer
             m_timeSinceAttack = 0.0f;
@@ -173,23 +180,18 @@ public class HeroKnight : MonoBehaviour {
         }
     }
 
-    // Animation Events
-    // Called in slide animation.
-    void AE_SlideDust()
+    IEnumerator ParryAttack()
     {
-        Vector3 spawnPosition;
+        isAttacking = true;
 
-        if (m_facingDirection == 1)
-            spawnPosition = m_wallSensorR2.transform.position;
-        else
-            spawnPosition = m_wallSensorL2.transform.position;
-
-        if (m_slideDust != null)
+        while (parryWindow > Mathf.Epsilon)
         {
-            // Set correct arrow spawn position
-            GameObject dust = Instantiate(m_slideDust, spawnPosition, gameObject.transform.localRotation) as GameObject;
-            // Turn arrow in correct direction
-            dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
+            parryWindow -= Time.deltaTime;
+            yield return null;
         }
+
+        parryWindow = 0.5f;
+        isAttacking = false;
+        yield break;
     }
 }

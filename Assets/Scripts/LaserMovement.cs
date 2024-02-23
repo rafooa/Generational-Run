@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 public class LaserMovement : MonoBehaviour
 {
@@ -12,51 +13,33 @@ public class LaserMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb.velocity = new Vector2(-1 * turrGen.currSpeed, rb.velocity.y);
+        GetComponent<SpriteRenderer>().flipX = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * turrGen.currSpeed * Time.deltaTime);
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Debug.Log("TESTING 1");
-    //    if (collision.gameObject.name == "StartLine" || collision.gameObject.CompareTag("StartLine"))
-    //    {
-    //        turrGen.GenerateLaser();
-    //    }
-
-    //    if (collision.gameObject.CompareTag("FinishLine"))
-    //    {
-    //        Destroy(this.gameObject);
-    //    }
-
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        Debug.Log("TESTINGGGGGGG");
-    //    }
-    //}
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TESTING 2");
-        if (collision.gameObject.CompareTag("StartLine"))
-        {
-            turrGen.GenerateLaser();
-        }
 
         if (collision.gameObject.CompareTag("FinishLine"))
         {
+            turrGen.GenerateLaser();
             Destroy(this.gameObject);
         }
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("TESTINGGGGGGG");
+            Debug.Log("HIT PLAYER");
+            if (collision.gameObject.GetComponent<HeroKnight>().isAttacking)
+            {
+                Debug.Log("PARRYINGGG");
+                GetComponent<SpriteRenderer>().flipX = false;
+                rb.velocity = new Vector2(-1 * rb.velocity.x, rb.velocity.y);
+            }
         }
     }
 }
