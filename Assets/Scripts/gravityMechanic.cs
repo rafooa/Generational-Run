@@ -6,6 +6,7 @@ public class gravityMechanic : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody2D body;
+    public Animator m_animator;
     bool gravityOn = true;
     float usage = 2;
     float cooldown = 2;
@@ -35,7 +36,7 @@ public class gravityMechanic : MonoBehaviour
                 gravityOn = true;
                 cooldownON = true;
                 body.gravityScale = 3;
-                player.transform.Rotate(-180, 0, 0);
+                StartCoroutine(flip(gravityOn));
             }
         }
 
@@ -58,9 +59,11 @@ public class gravityMechanic : MonoBehaviour
 //            GameObject temp = Instantiate(jumpEffect, new Vector2(player.transform.position.x,(float)-3.27), transform.rotation);
 //            StartCoroutine(destroyEffect(temp));
             body.gravityScale = (float)-2;
-            player.transform.Rotate(180, 0, 0);
+            StartCoroutine(flip(gravityOn));
+//            player.transform.Rotate(180, 0, 0);
+
         }
-        if (Input.GetKeyDown("2") && gravityOn == false && cooldownON == false) 
+        if (Input.GetKeyDown("2") && gravityOn == false) 
         {
             gravityOn = true;
             usage = timeU;
@@ -68,14 +71,31 @@ public class gravityMechanic : MonoBehaviour
 //            GameObject temp = Instantiate(jumpEffect, new Vector2(player.transform.position.x, (float)3.44), player.transform.rotation);
 //            StartCoroutine(destroyEffect(temp));
             body.gravityScale = 3;
-            player.transform.Rotate(-180, 0, 0);
+            StartCoroutine(flip(gravityOn));
+//            player.transform.Rotate(-180, 0, 0);
         }
 
     }
 
+    IEnumerator flip(bool grav)
+    {
+        yield return new WaitForSeconds((float)0.2);
+        if (grav == true)
+        {
+            Animator m = player.GetComponent<Animator>();
+//            Debug.Log("Animator ki info is : " + m_animator.);
+            m.SetTrigger("Jump");
+            player.transform.Rotate(-180, 0, 0);
+        }
+        else if (grav == false)
+        {
+            player.transform.Rotate(-180, 0, 0);
+        }
+    }
+
     IEnumerator destroyEffect(GameObject efect)
     {
-        yield return new WaitForSeconds((float)0.5);
+        yield return new WaitForSeconds((float)0.2);
         Destroy(efect);
     }
 }

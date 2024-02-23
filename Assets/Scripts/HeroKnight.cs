@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.ParticleSystemJobs;
+using Unity.VisualScripting;
 
 public class HeroKnight : MonoBehaviour {
 
@@ -29,6 +30,18 @@ public class HeroKnight : MonoBehaviour {
 
     public bool isAttacking = false;
     private float parryWindow = 0.5f;
+
+
+    bool gravityOn = true;
+    float usage = 2;
+    float cooldown = 2;
+    bool cooldownON = false;
+    float timeCD = 2;
+    float timeU = 2;
+    public ParticleSystem dust;
+    public AudioSource src;
+    public AudioClip clip1;
+    public AudioClip clip2;
 
     // Use this for initialization
     void Start ()
@@ -83,13 +96,22 @@ public class HeroKnight : MonoBehaviour {
             
         else if (inputX < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+           // GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
         }
 
         // Move
-        if (!m_rolling )
-            m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        if (!m_rolling)
+        {
+            if (m_facingDirection == 1)
+            {
+                m_body2d.velocity = new Vector2(inputX * m_speed * (float)0.8, m_body2d.velocity.y);
+            }
+            else if (m_facingDirection == -1)
+            {
+                m_body2d.velocity = new Vector2(inputX * m_speed * (float)2, m_body2d.velocity.y);
+            }
+        }
 
         //Set AirSpeed in animator
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
@@ -153,8 +175,10 @@ public class HeroKnight : MonoBehaviour {
             
 
         //Jump
-        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
+        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling && gravityOn)
         {
+            Debug.Log("I do be jumping");
+            dust.Play();
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
@@ -174,12 +198,86 @@ public class HeroKnight : MonoBehaviour {
         else
         {
             // Prevents flickering transitions to idle
-            m_delayToIdle -= Time.deltaTime;
-                if(m_delayToIdle < 0)
-                    m_animator.SetInteger("AnimState", 0);
+            //            m_delayToIdle -= Time.deltaTime;
+            //                if(m_delayToIdle < 0)
+            //                    m_animator.SetInteger("AnimState", 0);
+            m_delayToIdle = 0.05f;
+            m_animator.SetInteger("AnimState", 1);
         }
+
+
+
+        //-----------------------------------------------------------------------
+
+
+        if (!gravityOn)
+        {
+            if (usage >= 0)
+            {
+                usage -= Time.deltaTime;
+            }
+            else
+            {
+                usage = timeU;
+                gravityOn = true;
+                cooldownON = true;
+                m_body2d.gravityScale = 3;
+                src.PlayOneShot(clip2);
+                StartCoroutine(flip(gravityOn));
+            }
+        }
+
+        if (cooldownON)
+        {
+            if (cooldown >= 0)
+            {
+                cooldown -= Time.deltaTime;
+            }
+            else
+            {
+                cooldown = timeCD;
+                cooldownON = false;
+            }
+        }
+
+        if (Input.GetKeyDown("1") && gravityOn == true && cooldownON == false && m_grounded == true)
+        {
+            gravityOn = false;
+            m_body2d.gravityScale = (float)-4;
+            src.PlayOneShot(clip1);
+            StartCoroutine(flip(gravityOn));
+        }
+        if (Input.GetKeyDown("space") && gravityOn == false)
+        {
+            gravityOn = true;
+            usage = timeU;
+            cooldownON = true;
+            m_body2d.gravityScale = 3;
+            src.PlayOneShot(clip2);
+            StartCoroutine(flip(gravityOn));
+        }
+        
+
     }
 
+    IEnumerator flip(bool grav)
+    {
+        dust.Play();
+        if (grav == true)
+        {
+            yield return new WaitForSeconds((float)0.2);
+            if (gameObject.transform.position.y > 4.4)
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x, (float)-3.9);
+            }
+            gameObject.transform.Rotate(-180, 0, 0);
+        }
+        else if (grav == false)
+        {
+            yield return new WaitForSeconds((float)0.4);
+            gameObject.transform.Rotate(-180, 0, 0);
+        }
+    }
     IEnumerator ParryAttack()
     {
         isAttacking = true;
