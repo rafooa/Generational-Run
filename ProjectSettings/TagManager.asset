@@ -8,6 +8,8 @@ TagManager:
   - StartLine
   - FinishLine
   - Banner
+  - Wall
+  - EWall
   layers:
   - Default
   - TransparentFX
