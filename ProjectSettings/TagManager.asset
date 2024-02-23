@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - StartLine
   - FinishLine
+  - Banner
   layers:
   - Default
   - TransparentFX

@@ -1,9 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml.Serialization;
+using UnityEngine.UIElements;
+using System.Collections.Generic;
 
 public class HeroKnight : MonoBehaviour {
 
+    public Camera mainCamera;
+    public LineRenderer _lineRenderer;
+    public DistanceJoint2D _distanceJoint;
+
     [SerializeField] float      m_speed = 4.0f;
+    [SerializeField] float      rightspeed = 2.5f;
+    [SerializeField] float      leftspeed = 4.0f;
     [SerializeField] float      m_jumpForce = 7.5f;
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
@@ -25,11 +34,21 @@ public class HeroKnight : MonoBehaviour {
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
+    public bool                canSwing = false;
+    public float hookReach = 10f;
+    public float hookspeed = 12f;
+    public float hookspeedstep = 0.1f;
+    public float hookstopspeedstep = 0.1f;
+    private Transform hookpos;
+    float tempspeed = 0;
+    bool slung = false;
+    public float recentreSpeed = 0.1f;
 
 
     // Use this for initialization
     void Start ()
     {
+        _distanceJoint.enabled = false;
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
@@ -42,6 +61,85 @@ public class HeroKnight : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        float minDist = 1000;
+
+        GameObject[] banners = GameObject.FindGameObjectsWithTag("Banner");
+        foreach (GameObject obj in banners)
+        {
+            
+            float dist = Vector2.Distance(transform.position,obj.transform.position);
+            
+            if (dist < hookReach)
+            {
+                canSwing = true;
+                
+                if (minDist > dist)
+                {
+                    minDist = dist;
+                    hookpos = obj.transform;
+                }
+                    
+            }
+                
+        }
+            
+        if (canSwing)
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Vector2 Pos = (Vector2)hookpos.position;
+                _lineRenderer.SetPosition(0, Pos);
+                _lineRenderer.SetPosition(1, _lineRenderer.gameObject.transform.position);
+                _distanceJoint.connectedAnchor = Pos;
+                _distanceJoint.enabled = true;
+                _lineRenderer.enabled = true;
+            
+        }
+
+        if (Input.GetKeyUp(KeyCode.G))
+        {
+            _distanceJoint.enabled = false;
+            _lineRenderer.enabled = false;
+            canSwing = false;
+            slung = true;
+            tempspeed = 0;
+        }
+
+        }
+        if (_distanceJoint.enabled)
+        {
+            float dist = Vector2.Distance(transform.position, hookpos.position);
+            if (dist > 8f && tempspeed > hookspeed)
+            {
+                _distanceJoint.enabled = false;
+                _lineRenderer.enabled = false;
+                canSwing = false;
+                tempspeed = 0;
+            }
+            else
+            {
+                _lineRenderer.SetPosition(1, _lineRenderer.gameObject.transform.position);
+                if (tempspeed < hookspeed)
+                    tempspeed += hookspeedstep;
+                if (m_body2d.velocity.y > 5f)
+                {
+                    m_body2d.velocity = new Vector2(m_speed + tempspeed, 5f);
+                }
+                else
+                {
+                    m_body2d.velocity = new Vector2(m_speed + tempspeed, m_body2d.velocity.y);
+                }
+                
+
+                
+            }
+
+            
+
+        }
+
+
+
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
 
@@ -69,23 +167,28 @@ public class HeroKnight : MonoBehaviour {
 
         // -- Handle input and movement --
         float inputX = Input.GetAxis("Horizontal");
-
+        float speed = 0f;
         // Swap direction of sprite depending on walk direction
         if (inputX > 0)
         {
+            speed = rightspeed;
             GetComponent<SpriteRenderer>().flipX = false;
             m_facingDirection = 1;
         }
             
         else if (inputX < 0)
         {
+            speed = leftspeed;
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
         }
-
+        //Debug.Log(inputX);
         // Move
-        if (!m_rolling )
-            m_body2d.velocity = new Vector2(inputX * m_speed, m_body2d.velocity.y);
+        if (!m_rolling && !_distanceJoint.enabled)
+            m_body2d.velocity = new Vector2(inputX * speed, m_body2d.velocity.y);
+       
+
+
 
         //Set AirSpeed in animator
         m_animator.SetFloat("AirSpeedY", m_body2d.velocity.y);
@@ -168,9 +271,21 @@ public class HeroKnight : MonoBehaviour {
         {
             // Prevents flickering transitions to idle
             m_delayToIdle -= Time.deltaTime;
-                if(m_delayToIdle < 0)
-                    m_animator.SetInteger("AnimState", 0);
+            if (m_delayToIdle < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+                m_facingDirection = 1;
+                m_animator.SetInteger("AnimState", 1);
+                 
+            }
+                   
         }
+
+        if (inputX == 0 && (6.38 - (-1f * transform.position.x)) > 0.5f)
+        {
+            m_body2d.velocity = new Vector2(-1 * Time.fixedDeltaTime * recentreSpeed, m_body2d.velocity.y);
+        }
+            
     }
 
     // Animation Events
