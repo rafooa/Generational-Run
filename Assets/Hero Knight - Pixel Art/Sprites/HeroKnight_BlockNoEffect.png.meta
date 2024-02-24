@@ -1,7 +1,22 @@
 fileFormatVersion: 2
-guid: 375c6f765985c4a539f757c9c8b5cfec
+guid: d94b5c1ffa7794547b59105c8f561da3
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: HeroKnight_BlockNoEffect_0
+  - first:
+      213: 21300002
+    second: HeroKnight_BlockNoEffect_1
+  - first:
+      213: 21300004
+    second: HeroKnight_BlockNoEffect_2
+  - first:
+      213: 21300006
+    second: HeroKnight_BlockNoEffect_3
+  - first:
+      213: 21300008
+    second: HeroKnight_BlockNoEffect_4
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -48,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -63,7 +78,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
   cookieLightType: 1
   platformSettings:
@@ -72,178 +87,170 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tileset_0
+      name: HeroKnight_BlockNoEffect_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 160
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 100
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa78e8706cec0324fb6cfa4bcf000aa5
-      internalID: -1990221254
+      spriteID: 700b9cddfcfec4f4ea81e7912f4420d7
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_1
+      name: HeroKnight_BlockNoEffect_1
       rect:
         serializedVersion: 2
-        x: 176
-        y: 69
-        width: 64
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 100
+        y: 0
+        width: 100
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc93e3540ec8e7c449371bc6fad08fc5
-      internalID: 1510520215
+      spriteID: 576888c498c54194c8a9690c269d9a6a
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_2
+      name: HeroKnight_BlockNoEffect_2
       rect:
         serializedVersion: 2
-        x: 272
-        y: 69
-        width: 64
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 200
+        y: 0
+        width: 100
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1abf8b49bd964754e8e0a88227a5134f
-      internalID: 50576578
+      spriteID: a306af6b313267b429c9b23c005f4bd7
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_3
+      name: HeroKnight_BlockNoEffect_3
       rect:
         serializedVersion: 2
-        x: 361
-        y: 16
-        width: 85
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 300
+        y: 0
+        width: 100
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2630f1cc59173845977a5b9472c6a60
-      internalID: 1257046208
+      spriteID: 8fa2e7ad225ea314eac4c77262a8428c
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tileset_4
+      name: HeroKnight_BlockNoEffect_4
       rect:
         serializedVersion: 2
-        x: 471
-        y: 16
-        width: 137
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 400
+        y: 0
+        width: 100
+        height: 55
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49531e72a42e1684fb22cb5dafcf8645
-      internalID: -391792561
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileset_5
-      rect:
-        serializedVersion: 2
-        x: 185
-        y: 5
-        width: 85
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9613a5aa534170f4987d2f6b97fd6a9e
-      internalID: -2124030676
+      spriteID: 6083d2ece0bd7a04985c92e7c0411bec
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -251,20 +258,19 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: 13f9bf9c1cbca32469bac747e17e10d7
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tileset_0: -1990221254
-      tileset_1: 1510520215
-      tileset_2: 50576578
-      tileset_3: 1257046208
-      tileset_4: -391792561
-      tileset_5: -2124030676
+      HeroKnight_BlockNoEffect_0: 21300000
+      HeroKnight_BlockNoEffect_1: 21300002
+      HeroKnight_BlockNoEffect_2: 21300004
+      HeroKnight_BlockNoEffect_3: 21300006
+      HeroKnight_BlockNoEffect_4: 21300008
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

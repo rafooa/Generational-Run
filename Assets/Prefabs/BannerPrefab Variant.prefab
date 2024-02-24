@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7716702757854090066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2707690574233203299, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: bannerSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173929304622441103, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033227850630747421, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: bannerSpeed
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4134081802422655142, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_Name
+      value: BannerPrefab Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.521451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.61974
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5928999058556619764, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_Name
+      value: BannerPrefab Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830232890890852253, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_Radius
+      value: 0.36076638
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830232890890852253, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.1407664
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}

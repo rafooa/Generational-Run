@@ -17,6 +17,7 @@ public class BannerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_body2d.velocity = new Vector2(-1f * bannerSpeed, m_body2d.velocity.y);
+        //m_body2d.velocity = new Vector2(-1f * bannerSpeed, m_body2d.velocity.y);
+        transform.Translate(bannerSpeed * Time.deltaTime, 0, 0);
     }
 }

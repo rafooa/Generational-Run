@@ -3,6 +3,8 @@ using System.Collections;
 using System.Xml.Serialization;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using static UnityEditor.PlayerSettings;
+using Unity.VisualScripting;
 
 public class HeroKnight : MonoBehaviour
 {
@@ -33,8 +35,8 @@ public class HeroKnight : MonoBehaviour
     private int m_currentAttack = 0;
     private float m_timeSinceAttack = 0.0f;
     private float m_delayToIdle = 0.0f;
-    private float m_rollDuration = 8.0f / 14.0f;
-    private float m_rollCurrentTime;
+    public float m_rollDuration = 8.0f / 14.0f;
+    private float m_rollCurrentTime = 0;
     public bool canSwing = false;
 
     public float hookReach = 10f;
@@ -62,9 +64,24 @@ public class HeroKnight : MonoBehaviour
     public AudioClip clip2;
 
 
+
+
+
+
+
+    public BoxCollider2D coll;
+    static public bool doubleJump = false;
+    public float fallspeed;
+    public float slingspeed;
+    private bool wallcheck = false;
+    private bool ewall = false;
+    public float wallBoost;
+
+
     // Use this for initialization
     void Start()
     {
+        Application.targetFrameRate = 60;
         _distanceJoint.enabled = false;
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
@@ -79,26 +96,29 @@ public class HeroKnight : MonoBehaviour
     void Update()
     {
         float minDist = 1000;
-
-        GameObject[] banners = GameObject.FindGameObjectsWithTag("Banner");
-        foreach (GameObject obj in banners)
+        if(!_distanceJoint.enabled)
         {
-
-            float dist = Vector2.Distance(transform.position, obj.transform.position);
-
-            if (dist < hookReach)
+            GameObject[] banners = GameObject.FindGameObjectsWithTag("Banner");
+            foreach (GameObject obj in banners)
             {
-                canSwing = true;
 
-                if (minDist > dist)
+                float dist = Vector2.Distance(transform.position, obj.transform.position);
+
+                if (dist < hookReach)
                 {
-                    minDist = dist;
-                    hookpos = obj.transform;
+                    canSwing = true;
+
+                    if (minDist > dist)
+                    {
+                        minDist = dist;
+                        hookpos = obj.transform;
+                    }
+
                 }
 
             }
-
         }
+       
 
         if (canSwing)
         {
@@ -135,6 +155,7 @@ public class HeroKnight : MonoBehaviour
             }
             else
             {
+                _lineRenderer.SetPosition(0, (Vector2)hookpos.position);
                 _lineRenderer.SetPosition(1, _lineRenderer.gameObject.transform.position);
                 if (tempspeed < hookspeed)
                     tempspeed += hookspeedstep;
@@ -144,7 +165,7 @@ public class HeroKnight : MonoBehaviour
                 }
                 else
                 {
-                    m_body2d.velocity = new Vector2(m_speed + tempspeed, m_body2d.velocity.y);
+                    m_body2d.velocity = new Vector2(2f * m_speed + tempspeed, m_body2d.velocity.y);
                 }
 
 
@@ -166,14 +187,24 @@ public class HeroKnight : MonoBehaviour
 
         // Disable rolling if timer extends duration
         if (m_rollCurrentTime > m_rollDuration)
+        {
+            coll.offset = new Vector2(0f, 0.662f);
+            coll.size = new Vector2(0.73f, 1.2f);
             m_rolling = false;
+            m_rollCurrentTime = 0f;
+        }
+           
 
         //Check if character just landed on the ground
         if (!m_grounded && m_groundSensor.State())
         {
             m_grounded = true;
+            slung = false;
+            doubleJump = true;
             m_animator.SetBool("Grounded", m_grounded);
         }
+
+        
 
         //Check if character just started falling
         if (m_grounded && !m_groundSensor.State())
@@ -199,10 +230,27 @@ public class HeroKnight : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true;
             m_facingDirection = -1;
         }
-        //Debug.Log(inputX);
-        // Move
+       
         if (!m_rolling && !_distanceJoint.enabled)
-            m_body2d.velocity = new Vector2(inputX * speed, m_body2d.velocity.y);
+        {
+            //if(!slung)
+            //{
+                if (m_body2d.velocity.y < 0)
+                {
+                    m_body2d.velocity = new Vector2(inputX * speed, m_body2d.velocity.y + (-1 * Time.fixedDeltaTime * fallspeed));
+                }
+                else
+                {
+                    m_body2d.velocity = new Vector2(inputX * speed, m_body2d.velocity.y);
+                }
+           // }
+            //else
+            //{
+            //    m_body2d.velocity = new Vector2(m_body2d.velocity.x + (Time.fixedDeltaTime * slingspeed), m_body2d.velocity.y);
+            //}
+
+        }
+
 
 
 
@@ -212,8 +260,12 @@ public class HeroKnight : MonoBehaviour
 
         // -- Handle Animations --
         //Wall Slide
+
         m_isWallSliding = (m_wallSensorR1.State() && m_wallSensorR2.State()) || (m_wallSensorL1.State() && m_wallSensorL2.State());
         m_animator.SetBool("WallSlide", m_isWallSliding);
+    
+        
+        
 
         //Death
         if (Input.GetKeyDown("e") && !m_rolling)
@@ -259,18 +311,39 @@ public class HeroKnight : MonoBehaviour
         {
             m_rolling = true;
             m_animator.SetTrigger("Roll");
+            coll.offset = new Vector2(0f, 0.3683839f);
+            coll.size = new Vector2(0.73f, 0.6127678f);
             m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
         }
 
 
         //Jump
-        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
+        else if ((Input.GetKeyDown("space") && m_grounded && !m_rolling) || Input.GetKeyDown("space") && doubleJump)
         {
+            float jumpx = m_body2d.velocity.x;
+            float jumpy = m_jumpForce;
+            if (!m_grounded)
+            {
+                doubleJump = false;
+                
+            }
+            if(wallcheck && !m_grounded)
+            {
+                if(!ewall)
+                    jumpy += wallBoost/3;
+                jumpx = wallBoost;
+                Debug.Log("boost");
+            }
+
             dust.Play();
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
-            m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
+            if (gravityOn)
+            {
+                m_body2d.velocity = new Vector2(jumpx, jumpy);
+            }
+            else m_body2d.velocity = new Vector2(jumpx, -jumpy);
             m_groundSensor.Disable(0.2f);
         }
 
@@ -289,17 +362,17 @@ public class HeroKnight : MonoBehaviour
             m_delayToIdle -= Time.deltaTime;
             if (m_delayToIdle < 0)
             {
-                GetComponent<SpriteRenderer>().flipX = false;
-                m_facingDirection = 1;
+                //GetComponent<SpriteRenderer>().flipX = false;
+                //m_facingDirection = 1;
                 m_animator.SetInteger("AnimState", 1);
 
             }
 
         }
 
-        if (inputX == 0 && (6.38 - (-1f * transform.position.x)) > 0.5f)
+        if (inputX == 0 && (6.38 - (-1f * transform.position.x)) > 0.5f && m_grounded)
         {
-            m_body2d.velocity = new Vector2(-1 * Time.fixedDeltaTime * recentreSpeed, m_body2d.velocity.y);
+            //m_body2d.velocity = new Vector2(-1 * Time.fixedDeltaTime * recentreSpeed, m_body2d.velocity.y);
         }
 
         if (!gravityOn)
@@ -313,7 +386,7 @@ public class HeroKnight : MonoBehaviour
                 usage = timeU;
                 gravityOn = true;
                 cooldownON = true;
-                m_body2d.gravityScale = 3;
+                m_body2d.gravityScale = 1;
                 src.PlayOneShot(clip2);
                 StartCoroutine(flip(gravityOn));
             }
@@ -335,7 +408,7 @@ public class HeroKnight : MonoBehaviour
         if (Input.GetKeyDown("1") && gravityOn == true && cooldownON == false && m_grounded == true)
         {
             gravityOn = false;
-            m_body2d.gravityScale = (float)-4;
+            m_body2d.gravityScale = (float)-2;
             src.PlayOneShot(clip1);
             StartCoroutine(flip(gravityOn));
         }
@@ -344,7 +417,7 @@ public class HeroKnight : MonoBehaviour
             gravityOn = true;
             usage = timeU;
             cooldownON = true;
-            m_body2d.gravityScale = 3;
+            m_body2d.gravityScale = 1;
             src.PlayOneShot(clip2);
             StartCoroutine(flip(gravityOn));
         }
@@ -403,5 +476,39 @@ public class HeroKnight : MonoBehaviour
             // Turn arrow in correct direction
             dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EWall"))
+        {
+            //m_body2d.velocity = new Vector2(m_body2d.velocity.x, 1f);
+            doubleJump = true;
+            wallcheck = true;
+            ewall = true;
+            //m_animator.SetTrigger("Wall Slide");
+        }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            //m_body2d.velocity = new Vector2(m_body2d.velocity.x, 1f);
+            doubleJump = true;
+            wallcheck = true;
+            //m_animator.SetTrigger("Wall Slide");
+        }
+
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("EWall"))
+        {
+            m_body2d.velocity = Vector2.Lerp(new Vector2(m_body2d.velocity.x, 0f), new Vector2(m_body2d.velocity.x, m_body2d.velocity.x),0.07f);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("EWall"))
+            wallcheck = false;
     }
 }
