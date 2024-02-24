@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(obj[0], obj[0].transform);
+            Instantiate(obj[0]);
 
             // wait for seconds
             yield return new WaitForSeconds(WaitTime);
