@@ -6,7 +6,6 @@ public class timeSlow : MonoBehaviour
     public float slowdownFactor = 0.3f; // Adjust as needed
     public float slowdownDuration = 1f; // Adjust as needed
     public float smoothness = 0.1f; // Adjust as needed
-    public Rigidbody2D mainCharacter;
 
     public float start;
     public AudioSource zaWARUDO;
@@ -27,7 +26,7 @@ public class timeSlow : MonoBehaviour
     void Update()
     {
         // Check for input to trigger the slowdown effect
-        if (Input.GetKeyDown(KeyCode.Q) && Time.time - start > 3f) // You can change KeyCode to any key you want
+        if (Input.GetKeyDown(KeyCode.P) && Time.time - start > 3f) // You can change KeyCode to any key you want
         {
             slowCheck = true;
             TriggerSlowdown();
