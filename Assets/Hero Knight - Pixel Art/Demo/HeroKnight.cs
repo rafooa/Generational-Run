@@ -341,7 +341,11 @@ public class HeroKnight : MonoBehaviour
             m_animator.SetTrigger("Jump");
             m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
-            m_body2d.velocity = new Vector2(jumpx, jumpy);
+            if (gravityOn)
+            {
+                m_body2d.velocity = new Vector2(jumpx, jumpy);
+            }
+            else m_body2d.velocity = new Vector2(jumpx, -jumpy);
             m_groundSensor.Disable(0.2f);
         }
 
@@ -384,7 +388,7 @@ public class HeroKnight : MonoBehaviour
                 usage = timeU;
                 gravityOn = true;
                 cooldownON = true;
-                m_body2d.gravityScale = 3;
+                m_body2d.gravityScale = 1;
                 src.PlayOneShot(clip2);
                 StartCoroutine(flip(gravityOn));
             }
@@ -406,7 +410,7 @@ public class HeroKnight : MonoBehaviour
         if (Input.GetKeyDown("1") && gravityOn == true && cooldownON == false && m_grounded == true)
         {
             gravityOn = false;
-            m_body2d.gravityScale = (float)-4;
+            m_body2d.gravityScale = (float)-2;
             src.PlayOneShot(clip1);
             StartCoroutine(flip(gravityOn));
         }
@@ -415,7 +419,7 @@ public class HeroKnight : MonoBehaviour
             gravityOn = true;
             usage = timeU;
             cooldownON = true;
-            m_body2d.gravityScale = 3;
+            m_body2d.gravityScale = 1;
             src.PlayOneShot(clip2);
             StartCoroutine(flip(gravityOn));
         }
