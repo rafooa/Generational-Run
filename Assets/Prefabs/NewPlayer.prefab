@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -131,6 +131,19 @@ MonoBehaviour:
   jumpParticle: {fileID: 6658855974038491862}
   wallJumpParticle: {fileID: 6723327882525750005}
   slideParticle: {fileID: 8252982596476692193}
+  mainCamera: {fileID: 0}
+  _lineRenderer: {fileID: 0}
+  _distanceJoint: {fileID: 0}
+  canSwing: 0
+  hookReach: 10
+  hookspeed: 12
+  hookspeedstep: 0.1
+  hookstopspeedstep: 0.1
+  dust: {fileID: 0}
+  src: {fileID: 0}
+  clip1: {fileID: 0}
+  clip2: {fileID: 0}
+  isAttacking: 0
 --- !u!114 &6457953963450738455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19861,6 +19874,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8792358311721156308}
     m_Modifications:
+    - target: {fileID: 388493269494170620, guid: 9b4f719fda6ceed44a7e31d2610054ff, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 388493269494170620, guid: 9b4f719fda6ceed44a7e31d2610054ff, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3139354997749069845, guid: 9b4f719fda6ceed44a7e31d2610054ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.09

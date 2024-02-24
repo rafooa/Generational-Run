@@ -371,17 +371,20 @@ public class Movement : MonoBehaviour
         dust.Play();
         if (grav == true)
         {
-            yield return new WaitForSeconds((float)0.6);
+            yield return new WaitForSeconds(0.6f);
             if (gameObject.transform.position.y > 4.4)
             {
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x, (float)-3.9);
             }
             gameObject.transform.Rotate(0, 0, -180);
+            //gameObject.transform.position = new Vector2(gameObject.transform.position.x, 7f);
         }
         else if (grav == false)
         {
-            yield return new WaitForSeconds((float)0.6);
-            gameObject.transform.Rotate(0, 0, -180);
+            yield return new WaitForSeconds(0.6f);
+                        gameObject.transform.Rotate(0, 0, -180);
+            //gameObject.transform.position = new Vector2(gameObject.transform.position.x, 7f);
+
         }
     }
 
@@ -506,7 +509,7 @@ public class Movement : MonoBehaviour
         else
         {
             //Debug.Log("ok");
-            //rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
+            rb.velocity = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
             rb.velocity = new Vector2(dir.x * speed, rb.velocity.y);
         }
     }
