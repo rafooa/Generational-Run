@@ -200,3 +200,4 @@ MonoBehaviour:
   deflection: {fileID: 8690950337773083281, guid: 803b96fa8ebd5a749bdf32bd0e553139, type: 3}
   target: {fileID: 0}
   angleChangingSpeed: 500
+  sr: {fileID: 6596812175208844910}

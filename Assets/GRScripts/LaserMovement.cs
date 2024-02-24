@@ -15,6 +15,8 @@ public class LaserMovement : MonoBehaviour
     public Transform target;
     public float angleChangingSpeed;
     bool dead = false;
+    GameObject exp;
+    public SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,10 @@ public class LaserMovement : MonoBehaviour
     void Update()
     {
         if(dead)
-        { return; }
+        { 
+            sr.enabled = false;
+            return; 
+        }
         Vector2 actualHitbox = new Vector2(target.transform.position.x, target.transform.position.y);
         Vector2 point2Target = (Vector2)transform.position - actualHitbox;
         point2Target.Normalize();
@@ -63,7 +68,8 @@ public class LaserMovement : MonoBehaviour
             }
             else 
             {
-                GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
+                Debug.Log("dead");
+                exp = Instantiate(explosion, transform.position, transform.rotation);
                 turrGen.GenerateLaser();
                 dead = true;
                 StartCoroutine(DeleteExp(exp));
@@ -73,17 +79,30 @@ public class LaserMovement : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Enemy") && isDeflected)
         {
-            Instantiate(explosion, transform.position, transform.rotation);
-            turrGen.GenerateLaser();
-            Destroy(turrGen.gameObject);
-            Destroy(this.gameObject);
+            exp = Instantiate(explosion, transform.position, transform.rotation);
+            dead = true;
+            //turrGen.GenerateLaser();
+            StartCoroutine(DeleteExpNTurr(exp));
+            
+            
         }
+    }
+
+    IEnumerator DeleteExpNTurr(GameObject exp)
+    {
+        Destroy(turrGen.gameObject);
+        yield return new WaitForSecondsRealtime(0.667f);
+        Destroy(exp);
+        
+        Destroy(this.gameObject);
     }
 
     IEnumerator DeleteExp(GameObject exp)
     {
         yield return new WaitForSecondsRealtime(0.667f);
-        Destroy(explosion);
+        Destroy(exp);
+        Debug.Log("dead2");
         Destroy(this.gameObject);
     }
+
 }
