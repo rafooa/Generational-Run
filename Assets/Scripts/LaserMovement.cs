@@ -38,6 +38,7 @@ public class LaserMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("FinishLine"))
         {
+            Instantiate(explosion, transform.position, transform.rotation);
             turrGen.GenerateLaser();
             Destroy(this.gameObject);
         }
