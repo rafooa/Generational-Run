@@ -9,17 +9,31 @@ public class bulletMovement : MonoBehaviour
 {
     public sniperGenerator snipGen;
     public Rigidbody2D rb;
+    public float angleChangingSpeed;
+    public Transform target;
+
+    public float TTL;
 
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = new Vector2(-1 * snipGen.currSpeed, rb.velocity.y);
         GetComponent<SpriteRenderer>().flipX = true;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        rb.velocity = (target.position - transform.position).normalized * snipGen.currSpeed;
+        TTL = Time.time;
+        // Vector2 actualHitbox = new Vector2(target.transform.position.x, target.transform.position.y + 1f);
+        // Vector2 point2Target = (Vector2)transform.position - actualHitbox;
+        // point2Target.Normalize();
+        // float value = Vector3.Cross(point2Target, transform.right).z;
+        // rb.angularVelocity = angleChangingSpeed * value * -1;
+        // rb.velocity = -1 * (point2Target * snipGen.currSpeed);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,19 +41,20 @@ public class bulletMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("FinishLine"))
         {
-            snipGen.GenerateLaser();
+            
+            Destroy(this.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("HIT PLAYER");
+            
+            Destroy(this.gameObject);
+        }
+        else
+        {
             Destroy(this.gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("HIT PLAYER");
-            if (collision.gameObject.GetComponent<HeroKnight>().isAttacking)
-            {
-                Debug.Log("PARRYINGGG");
-                GetComponent<SpriteRenderer>().flipX = false;
-                rb.velocity = new Vector2(-1 * rb.velocity.x, rb.velocity.y);
-            }
-        }
+
     }
 }

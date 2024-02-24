@@ -26,7 +26,7 @@ public class timeSlow : MonoBehaviour
     void Update()
     {
         // Check for input to trigger the slowdown effect
-        if (Input.GetKeyDown(KeyCode.P) && Time.time - start > 3f) // You can change KeyCode to any key you want
+        if (Input.GetKeyDown(KeyCode.P) && (Time.time - start > 3f || start == 0)) // You can change KeyCode to any key you want
         {
             slowCheck = true;
             TriggerSlowdown();
