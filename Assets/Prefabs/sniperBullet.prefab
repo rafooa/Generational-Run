@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snipGen: {fileID: 0}
-  rb: {fileID: 0}
-  angleChangingSpeed: 0
+  rb: {fileID: 6702010011008944659}
+  angleChangingSpeed: 500
   target: {fileID: 0}
   TTL: 0

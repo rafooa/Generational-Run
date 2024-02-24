@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2001237199530889129}
   - component: {fileID: 2001237199530889128}
   - component: {fileID: 7188172801889125072}
-  - component: {fileID: -3741484855919154065}
   m_Layer: 0
   m_Name: Player Shoot
   m_TagString: Untagged
@@ -117,22 +116,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4306069639697276726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a652ef1919bd7284fbb0f6b4260824f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 78cd2a0c285c87a419168aab24e996b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   laser: {fileID: 685719262452948330, guid: 5f51dfb82d0c9d7479659e523fd35e6e, type: 3}
   minSpeed: 20
   maxSpeed: 0
   currSpeed: 0
---- !u!114 &-3741484855919154065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4306069639697276726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b190ddcfa33e334981abbf3a93c0385, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
