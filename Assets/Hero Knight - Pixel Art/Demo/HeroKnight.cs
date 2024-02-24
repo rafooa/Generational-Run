@@ -498,7 +498,7 @@ public class HeroKnight : MonoBehaviour
 
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionStay(UnityEngine.Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("EWall"))
         {
