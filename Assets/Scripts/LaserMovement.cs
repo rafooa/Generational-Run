@@ -11,6 +11,7 @@ public class LaserMovement : MonoBehaviour
     public Rigidbody2D rb;
     public bool isDeflected = false;
     public GameObject explosion;
+    public GameObject deflection;
     public Transform target;
     public float angleChangingSpeed;
 
@@ -53,6 +54,7 @@ public class LaserMovement : MonoBehaviour
                 isDeflected = true;
                 rb.velocity = new Vector2(turrGen.currSpeed, rb.velocity.y);
                 target = GameObject.FindGameObjectWithTag("Enemy").transform;
+                Instantiate(deflection, transform.position, transform.rotation);
             }
             else 
             {
