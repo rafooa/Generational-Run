@@ -412,7 +412,7 @@ public class HeroKnight : MonoBehaviour
             src.PlayOneShot(clip1);
             StartCoroutine(flip(gravityOn));
         }
-        if (Input.GetKeyDown("space") && gravityOn == false)
+        if (Input.GetKeyDown("2") && gravityOn == false)
         {
             gravityOn = true;
             usage = timeU;

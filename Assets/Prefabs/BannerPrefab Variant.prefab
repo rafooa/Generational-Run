@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1073300744629935087, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2707690574233203299, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
       propertyPath: bannerSpeed
       value: 7
@@ -16,6 +20,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 6.06
       objectReference: {fileID: 0}
+    - target: {fileID: 3173929304622441103, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4033227850630747421, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
       propertyPath: bannerSpeed
       value: -7
@@ -23,6 +31,10 @@ PrefabInstance:
     - target: {fileID: 4134081802422655142, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
       propertyPath: m_Name
       value: BannerPrefab Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234158466596442849, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5123745793803727325, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
       propertyPath: m_LocalPosition.x

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8042754188252500767}
   - component: {fileID: 7831924432348352721}
   - component: {fileID: -144210046056989847}
+  - component: {fileID: -6967749922576983012}
   m_Layer: 0
   m_Name: FloatingRockPlat
   m_TagString: FinishLine
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691268952493714788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19fdc8a746d97a444a83d11d7b3615ad, type: 3}
   m_Name: 
@@ -175,3 +176,15 @@ MonoBehaviour:
   blink: {fileID: 0}
   m_body2d: {fileID: 8042754188252500767}
   bannerSpeed: -2
+--- !u!114 &-6967749922576983012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691268952493714788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b190ddcfa33e334981abbf3a93c0385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
