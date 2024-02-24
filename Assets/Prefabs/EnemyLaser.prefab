@@ -197,5 +197,6 @@ MonoBehaviour:
   rb: {fileID: 6702010011008944659}
   isDeflected: 0
   explosion: {fileID: 6416419833205740478, guid: e48b5f231f1eac64199404091a7d249c, type: 3}
+  deflection: {fileID: 8690950337773083281, guid: 803b96fa8ebd5a749bdf32bd0e553139, type: 3}
   target: {fileID: 0}
   angleChangingSpeed: 500
