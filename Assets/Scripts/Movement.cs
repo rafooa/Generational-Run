@@ -63,8 +63,8 @@ public class Movement : MonoBehaviour
     //huzaifa
     [Space]
     [Header("Huzaifa")]
-    bool gravityOn = true;
-    float usage = 2;
+    public bool gravityOn = true;
+    public float usage = 2;
     float cooldown = 2;
     bool cooldownON = false;
     float timeCD = 2;
@@ -371,6 +371,7 @@ public class Movement : MonoBehaviour
         dust.Play();
         if (grav == true)
         {
+            
             yield return new WaitForSeconds(0.6f);
             if (gameObject.transform.position.y > 4.4)
             {
@@ -381,6 +382,7 @@ public class Movement : MonoBehaviour
         }
         else if (grav == false)
         {
+            
             yield return new WaitForSeconds(0.6f);
                         gameObject.transform.Rotate(0, 0, -180);
             //gameObject.transform.position = new Vector2(gameObject.transform.position.x, 7f);
