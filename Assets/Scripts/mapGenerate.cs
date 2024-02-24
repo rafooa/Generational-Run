@@ -59,12 +59,9 @@ public class mapGenerate : MonoBehaviour
             }
             else if (rand == 5)
             {
-                yPos = transform.position.y;
+                yPos = transform.position.y - 3.3f;
             }
-            yPos = transform.position.y - 3.3f;
-            rot = transform.rotation;
-
-            Instantiate(platforms[5], new Vector3(xPos, yPos, 1), rot);
+            Instantiate(platforms[rand], new Vector3(xPos, yPos, 1), rot);
             timer = 6;
         }
     }

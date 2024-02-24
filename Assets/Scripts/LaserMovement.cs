@@ -53,7 +53,8 @@ public class LaserMovement : MonoBehaviour
                 //GetComponent<SpriteRenderer>().flipX = false;
                 isDeflected = true;
                 rb.velocity = new Vector2(turrGen.currSpeed, rb.velocity.y);
-                target = GameObject.FindGameObjectWithTag("Enemy").transform;
+                //                target = GameObject.FindGameObjectWithTag("Enemy").transform;
+                target = turrGen.gameObject.transform;
                 Instantiate(deflection, transform.position, transform.rotation);
             }
             else 
@@ -68,6 +69,7 @@ public class LaserMovement : MonoBehaviour
         {
             Instantiate(explosion, transform.position, transform.rotation);
             turrGen.GenerateLaser();
+            Destroy(turrGen.gameObject);
             Destroy(this.gameObject);
         }
     }
