@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7345965908763855037}
   - component: {fileID: 259186055103962889}
-  - component: {fileID: 6521775718206516519}
   - component: {fileID: 5387251809050154680}
   - component: {fileID: 5657816901229502769}
   m_Layer: 0
@@ -88,33 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &6521775718206516519
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5481290243614871782}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &5387251809050154680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hook: {fileID: 7345965908763855037}
   blink: {fileID: 0}
-  m_body2d: {fileID: 6521775718206516519}
-  bannerSpeed: 3
+  m_body2d: {fileID: 0}
+  bannerSpeed: 5
 --- !u!1 &5928999058556619764
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +213,14 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8287967555427917045, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
+      propertyPath: m_body2d
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8287967555427917045, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
+      propertyPath: bannerSpeed
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 9096956211034659593, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -285,7 +265,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6951414895031602806, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
