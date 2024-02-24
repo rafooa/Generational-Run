@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 
 public class Movement : MonoBehaviour
 {
+    
+
     private Collision coll;
     [HideInInspector]
     public Rigidbody2D rb;
@@ -43,7 +45,24 @@ public class Movement : MonoBehaviour
     public ParticleSystem wallJumpParticle;
     public ParticleSystem slideParticle;
 
+    //abdullah
+    [Space]
+    [Header("Abdullah")]
+    public Camera mainCamera;
+    public LineRenderer _lineRenderer;
+    public DistanceJoint2D _distanceJoint;
+    public bool canSwing = false;
+    public float hookReach = 10f;
+    public float hookspeed = 12f;
+    public float hookspeedstep = 0.1f;
+    public float hookstopspeedstep = 0.1f;
+    private Transform hookpos;
+    float tempspeed = 0;
+    bool slung = false;
+
     //huzaifa
+    [Space]
+    [Header("Huzaifa")]
     bool gravityOn = true;
     float usage = 2;
     float cooldown = 2;
@@ -57,18 +76,21 @@ public class Movement : MonoBehaviour
     private float gravSign = 1f;
 
     //rafay
+    [Space]
+    [Header("Rafay")]
     public bool isAttacking = false;
     private float parryWindow = 0.5f;
     private float m_timeSinceAttack = 0f;
 
     //hassan
 
-    //abdullah
+    
 
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
+        _distanceJoint.enabled = false;
         coll = GetComponent<Collision>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<AnimationScript>();
@@ -77,6 +99,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Grapple();
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         float xRaw = Input.GetAxisRaw("Horizontal");
@@ -185,6 +209,90 @@ public class Movement : MonoBehaviour
 
     }
 
+    void Grapple()
+    {
+        float minDist = 1000;
+        if (!_distanceJoint.enabled)
+        {
+            GameObject[] banners = GameObject.FindGameObjectsWithTag("Banner");
+            foreach (GameObject obj in banners)
+            {
+
+                float dist = Vector2.Distance(transform.position, obj.transform.position);
+
+                if (dist < hookReach)
+                {
+                    canSwing = true;
+
+                    if (minDist > dist)
+                    {
+                        minDist = dist;
+                        hookpos = obj.transform;
+                    }
+
+                }
+
+            }
+        }
+
+
+        if (canSwing)
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                Vector2 Pos = (Vector2)hookpos.position;
+                _lineRenderer.SetPosition(0, Pos);
+                _lineRenderer.SetPosition(1, _lineRenderer.gameObject.transform.position);
+                _distanceJoint.connectedAnchor = Pos;
+                _distanceJoint.enabled = true;
+                _lineRenderer.enabled = true;
+                
+
+            }
+
+            if (Input.GetKeyUp(KeyCode.G))
+            {
+                _distanceJoint.enabled = false;
+                _lineRenderer.enabled = false;
+                canSwing = false;
+                slung = true;
+                tempspeed = 0;
+            }
+
+        }
+        if (_distanceJoint.enabled)
+        {
+            float dist = Vector2.Distance(transform.position, hookpos.position);
+            if (dist > 8f && tempspeed > hookspeed)
+            {
+                _distanceJoint.enabled = false;
+                _lineRenderer.enabled = false;
+                canSwing = false;
+                tempspeed = 0;
+            }
+            else
+            {
+                _lineRenderer.SetPosition(0, (Vector2)hookpos.position);
+                _lineRenderer.SetPosition(1, _lineRenderer.gameObject.transform.position);
+                if (tempspeed < hookspeed)
+                    tempspeed += hookspeedstep;
+                if (rb.velocity.y > 5f)
+                {
+                    rb.velocity = new Vector2(speed + tempspeed, 5f);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(2f * speed + tempspeed, rb.velocity.y);
+                }
+
+
+
+            }
+
+
+
+        }
+    }
     void Gravity()
     {
         if (!gravityOn)
@@ -238,7 +346,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void Attack()
+     void Attack()
     {
         if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 1.5f /*&& !m_rolling*/) // CHANGED TIME SINCE ATTACK FOR PARRY COOLDOWN
         {

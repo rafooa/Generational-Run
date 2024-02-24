@@ -27,6 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5481290243614871782}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 10.803305, y: -0.69016874, z: 13.61974}
   m_LocalScale: {x: 8.296725, y: 8.296725, z: 8.296725}
@@ -34,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 3495244036151335773}
   m_Father: {fileID: 5123745793803727325}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &259186055103962889
 SpriteRenderer:
@@ -199,15 +199,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5928999058556619764}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4633045, y: -1.0198313, z: -13.61974}
+  m_LocalPosition: {x: 4.55, y: -1.6, z: -13.61974}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5896897415823884723}
   - {fileID: 7345965908763855037}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3452886030923537082
 PrefabInstance:
@@ -220,6 +220,18 @@ PrefabInstance:
     - target: {fileID: 474873514481225990, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
       propertyPath: m_Name
       value: CokeBanner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906706988405726837, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
+      propertyPath: m_Radius
+      value: 0.36076638
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906706988405726837, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.1407664
+      objectReference: {fileID: 0}
+    - target: {fileID: 2906706988405726837, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6951414895031602806, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
       propertyPath: m_Simulated
