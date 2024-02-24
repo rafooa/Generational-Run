@@ -14,6 +14,7 @@ public class LaserMovement : MonoBehaviour
     public GameObject deflection;
     public Transform target;
     public float angleChangingSpeed;
+    bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,9 @@ public class LaserMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 actualHitbox = new Vector2(target.transform.position.x, target.transform.position.y + 1f);
+        if(dead)
+        { return; }
+        Vector2 actualHitbox = new Vector2(target.transform.position.x, target.transform.position.y);
         Vector2 point2Target = (Vector2)transform.position - actualHitbox;
         point2Target.Normalize();
         float value = Vector3.Cross(point2Target, transform.right).z;
@@ -37,7 +40,7 @@ public class LaserMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        Debug.Log("HIT PLAYER");
+        Debug.Log("coll");
         if (collision.gameObject.CompareTag("FinishLine"))
         {
             Instantiate(explosion, transform.position, transform.rotation);
@@ -60,9 +63,11 @@ public class LaserMovement : MonoBehaviour
             }
             else 
             {
-                Instantiate(explosion, transform.position, transform.rotation);
+                GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
                 turrGen.GenerateLaser();
-                Destroy(this.gameObject);
+                dead = true;
+                StartCoroutine(DeleteExp(exp));
+                
             }
         }
         
@@ -73,5 +78,12 @@ public class LaserMovement : MonoBehaviour
             Destroy(turrGen.gameObject);
             Destroy(this.gameObject);
         }
+    }
+
+    IEnumerator DeleteExp(GameObject exp)
+    {
+        yield return new WaitForSecondsRealtime(0.667f);
+        Destroy(explosion);
+        Destroy(this.gameObject);
     }
 }
