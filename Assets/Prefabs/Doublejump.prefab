@@ -269,6 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8322172196290163686}
+  - component: {fileID: 8056580676370208665}
   m_Layer: 0
   m_Name: Doublejump
   m_TagString: Untagged
@@ -285,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 8029116009061891343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.82, y: 1.7198548, z: 0.46300572}
+  m_LocalPosition: {x: 15.96, y: 2.17, z: 0.46300572}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -295,6 +296,22 @@ Transform:
   - {fileID: 4793824124177676180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8056580676370208665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8029116009061891343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fdc8a746d97a444a83d11d7b3615ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hook: {fileID: 0}
+  blink: {fileID: 0}
+  m_body2d: {fileID: 0}
+  bannerSpeed: -2
 --- !u!1 &8227490569768276666
 GameObject:
   m_ObjectHideFlags: 0
