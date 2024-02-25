@@ -73,6 +73,8 @@ public class Movement : MonoBehaviour
     public AudioSource src;
     public AudioClip clip1;
     public AudioClip clip2;
+    public AudioClip walking;
+    public AudioClip jumping;
     private float gravSign = 1f;
     Vector2 oldColl;
 
@@ -109,7 +111,11 @@ public class Movement : MonoBehaviour
         Vector2 dir = new Vector2(x, y);
 
         Walk(dir);
-        anim.SetHorizontalMovement(x, y, rb.velocity.y);
+        if (x != 0)
+        {
+            if (!src.isPlaying) src.PlayOneShot(walking);
+            anim.SetHorizontalMovement(x, y, rb.velocity.y);
+        }
 
         if (coll.onWall && Input.GetButton("Fire3") && canMove)
         {
