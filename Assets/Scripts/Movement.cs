@@ -74,6 +74,7 @@ public class Movement : MonoBehaviour
     public AudioClip clip1;
     public AudioClip clip2;
     private float gravSign = 1f;
+    Vector2 oldColl;
 
     //rafay
     [Space]
@@ -162,7 +163,17 @@ public class Movement : MonoBehaviour
             anim.SetTrigger("jump");
 
             if (coll.onGround)
-                Jump(Vector2.up, false);
+            {
+                if (gravityOn)
+                {
+                    Jump(Vector2.up, false);
+                }
+                else
+                {
+                    Jump(Vector2.down, false);
+                }
+            }
+
             if (coll.onWall && !coll.onGround)
                 WallJump();
         }
@@ -295,7 +306,7 @@ public class Movement : MonoBehaviour
     }
     void Gravity()
     {
-        if (!gravityOn)
+/*        if (!gravityOn)
         {
             if (usage >= 0)
             {
@@ -325,12 +336,14 @@ public class Movement : MonoBehaviour
                 cooldownON = false;
             }
         }
-
+*/
         if (Input.GetKeyDown("1") && gravityOn == true && cooldownON == false && coll.onGround == true)
         {
             gravityOn = false;
             gravSign = -1f;
             rb.gravityScale *= gravSign;
+            oldColl = coll.bottomOffset;
+            coll.bottomOffset = new Vector2(coll.bottomOffset.x, 1);
             src.PlayOneShot(clip1);
             StartCoroutine(flip(gravityOn));
         }
@@ -338,9 +351,10 @@ public class Movement : MonoBehaviour
         {
             gravityOn = true;
             usage = timeU;
-            cooldownON = true;
+//            cooldownON = true;
             gravSign = 1f;
             rb.gravityScale = 3 * gravSign;
+            coll.bottomOffset = oldColl;
             src.PlayOneShot(clip2);
             StartCoroutine(flip(gravityOn));
         }
@@ -522,8 +536,19 @@ public class Movement : MonoBehaviour
         ParticleSystem particle = wall ? wallJumpParticle : jumpParticle;
 
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        if(!wall) 
-            rb.velocity += dir * jumpForce;
+        if (!wall)
+        {
+            if (gravityOn)
+            {
+                rb.velocity += dir * jumpForce;
+            }
+            else
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -1 * jumpForce);
+//                rb.velocity -= dir * jumpForce;
+
+            }
+        }
         else
             rb.velocity += dir * WalljumpForce;
 
