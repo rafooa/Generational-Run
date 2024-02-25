@@ -76,6 +76,7 @@ public class Movement : MonoBehaviour
     public AudioClip walking;
     public AudioClip jumping;
     public AudioClip dashing;
+    public AudioClip parrying;
     private float gravSign = 1f;
     Vector2 oldColl;
 
@@ -188,7 +189,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && !hasDashed)
         {
-            if (!src.isPlaying) src.PlayOneShot(dashing);
+            src.PlayOneShot(dashing);
             if (xRaw != 0 || yRaw != 0)
                 Dash(xRaw, yRaw);
         }
@@ -225,6 +226,7 @@ public class Movement : MonoBehaviour
 
         m_timeSinceAttack += Time.deltaTime;
 
+        src.PlayOneShot(parrying);
         Attack();
 
     }

@@ -1094,6 +1094,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2019554535288101757, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
+      propertyPath: dashing
+      value: 
+      objectReference: {fileID: 8300000, guid: 133690f8526444145b1a4772d4e825a6, type: 3}
+    - target: {fileID: 2019554535288101757, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
       propertyPath: jumping
       value: 
       objectReference: {fileID: 8300000, guid: 608f4a5a9cc362c4c91d19c671803607, type: 3}
@@ -1101,6 +1105,10 @@ PrefabInstance:
       propertyPath: walking
       value: 
       objectReference: {fileID: 8300000, guid: 622f42e8d781b8a44b119174e4ed9708, type: 3}
+    - target: {fileID: 2019554535288101757, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
+      propertyPath: parrying
+      value: 
+      objectReference: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
     - target: {fileID: 2019554535288101757, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
       propertyPath: dashSpeed
       value: 80
