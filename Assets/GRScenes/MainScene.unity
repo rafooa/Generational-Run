@@ -154,10 +154,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj:
   - {fileID: 8029116009061891343, guid: 61ec50b052f06b0409837eb9c187b329, type: 3}
-  size: 1
+  - {fileID: 5928999058556619764, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+  - {fileID: 849251678023750834, guid: 3d68cf4cd72358b42818d5f3c00eaad2, type: 3}
+  - {fileID: 849251678023750834, guid: 3d68cf4cd72358b42818d5f3c00eaad2, type: 3}
+  - {fileID: 849251678023750834, guid: 3d68cf4cd72358b42818d5f3c00eaad2, type: 3}
+  - {fileID: 5928999058556619764, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+  size: 6
   WaitTime:
-  - 30
+  - 50
+  - 7
+  - 5
+  - 5
+  - 5
+  - 7
   speed:
+  - -3
+  - -3
+  - -3
+  - -3
+  - -3
   - -3
 --- !u!4 &257781826
 Transform:
@@ -282,7 +297,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 228baadfc8b8acf4ea4b244dd9d837bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -701,7 +716,7 @@ DistanceJoint2D:
   m_Anchor: {x: -0.00000007107519, y: -0.000000020097502}
   m_ConnectedAnchor: {x: -0.45000792, y: -5.0500913}
   m_AutoConfigureDistance: 1
-  m_Distance: 2.004916
+  m_Distance: 7.8755846
   m_MaxDistanceOnly: 0
 --- !u!120 &1642260243
 LineRenderer:
@@ -1191,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8792358311721156308, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.56
+      value: -0.45
       objectReference: {fileID: 0}
     - target: {fileID: 8792358311721156308, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
       propertyPath: m_LocalPosition.y

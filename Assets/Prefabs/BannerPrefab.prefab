@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7345965908763855037}
   - component: {fileID: 259186055103962889}
   - component: {fileID: 5387251809050154680}
-  - component: {fileID: 5657816901229502769}
   m_Layer: 0
   m_Name: BannerCar
   m_TagString: Enemy
@@ -132,22 +131,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5650656, y: 0.14428024}
   m_EdgeRadius: 0
---- !u!114 &5657816901229502769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5481290243614871782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19fdc8a746d97a444a83d11d7b3615ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hook: {fileID: 7345965908763855037}
-  blink: {fileID: 0}
-  m_body2d: {fileID: 0}
-  bannerSpeed: 5
 --- !u!1 &5928999058556619764
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,6 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5123745793803727325}
+  - component: {fileID: 5279800831620201648}
   m_Layer: 0
   m_Name: BannerPrefab
   m_TagString: Untagged
@@ -181,6 +165,22 @@ Transform:
   - {fileID: 7345965908763855037}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5279800831620201648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928999058556619764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fdc8a746d97a444a83d11d7b3615ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hook: {fileID: 0}
+  blink: {fileID: 0}
+  m_body2d: {fileID: 0}
+  bannerSpeed: 2
 --- !u!1001 &3452886030923537082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,6 +267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6951414895031602806, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
+    - {fileID: 8287967555427917045, guid: aee5e4932cad9014c8e535c9d9a06d2d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

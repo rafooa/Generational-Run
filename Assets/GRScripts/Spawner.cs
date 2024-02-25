@@ -19,7 +19,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if(canSpawn && i<size)
+        
+        if(canSpawn)
             StartCoroutine(MyCoroutine());
     }
 
@@ -28,13 +29,13 @@ public class Spawner : MonoBehaviour
        
         //while (true)
         {
-            GameObject go = Instantiate(obj[i]);
-            go.GetComponent<BannerScript>().bannerSpeed = speed[i];
+            GameObject go = Instantiate(obj[i % size]);
+            go.GetComponent<BannerScript>().bannerSpeed = speed[i % size];
            
             canSpawn = false;
 
             // wait for seconds
-            yield return new WaitForSeconds(WaitTime[i]);
+            yield return new WaitForSeconds(WaitTime[i % size]);
             i++;
             canSpawn = true;
         }

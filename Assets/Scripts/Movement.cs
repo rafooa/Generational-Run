@@ -226,7 +226,7 @@ public class Movement : MonoBehaviour
 
         m_timeSinceAttack += Time.deltaTime;
 
-        src.PlayOneShot(parrying);
+        
         Attack();
 
     }
@@ -379,6 +379,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire2") && m_timeSinceAttack > 1.5f /*&& !m_rolling*/) // CHANGED TIME SINCE ATTACK FOR PARRY COOLDOWN
         {
+            src.PlayOneShot(parrying);
             //m_currentAttack++;
 
             //// Loop back to one after third attack
