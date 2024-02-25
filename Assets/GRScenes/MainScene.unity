@@ -1094,6 +1094,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2019554535288101757, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
+      propertyPath: jumping
+      value: 
+      objectReference: {fileID: 8300000, guid: 608f4a5a9cc362c4c91d19c671803607, type: 3}
+    - target: {fileID: 2019554535288101757, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
+      propertyPath: walking
+      value: 
+      objectReference: {fileID: 8300000, guid: 622f42e8d781b8a44b119174e4ed9708, type: 3}
+    - target: {fileID: 2019554535288101757, guid: 182d9d03fb1a08249885991edf8924c3, type: 3}
       propertyPath: dashSpeed
       value: 80
       objectReference: {fileID: 0}
