@@ -25,7 +25,8 @@ In the very distant future, our main character accidentally ends up in a wormhol
 
 
 #Core Loops
-The core loop is the urgency of the player to make the correct decision to traverse obstacles as they keep appearing in front of them. 
+The core loop is the urgency of the player to make the correct decision to traverse obstacles as they keep appearing in front of them.
+
 #Objectives and Progression
 The player moves from left to right away from the crumbling reality and can mainly jump and crouch, in addition to the other tools at their disposal. Short term goals include collectables that aid the progress and long-term goals are the high score (farthest distance reached). The sense of urgency is directly linked to the player’s struggle to escape the wormhole and the setting and surroundings link with the idea of timelines converging.
 
