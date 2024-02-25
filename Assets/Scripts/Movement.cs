@@ -167,6 +167,7 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             anim.SetTrigger("jump");
+            src.PlayOneShot(jumping);
 
             if (coll.onGround)
             {
