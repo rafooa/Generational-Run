@@ -75,6 +75,7 @@ public class Movement : MonoBehaviour
     public AudioClip clip2;
     public AudioClip walking;
     public AudioClip jumping;
+    public AudioClip dashing;
     private float gravSign = 1f;
     Vector2 oldColl;
 
@@ -187,6 +188,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && !hasDashed)
         {
+            if (!src.isPlaying) src.PlayOneShot(dashing);
             if (xRaw != 0 || yRaw != 0)
                 Dash(xRaw, yRaw);
         }
@@ -354,6 +356,7 @@ public class Movement : MonoBehaviour
             gravSign = -1f;
             rb.gravityScale *= gravSign;
             oldColl = coll.bottomOffset;
+            coll.bottomOffset = new Vector2(coll.bottomOffset.x, 1f);
             src.PlayOneShot(clip1);
             StartCoroutine(flip(gravityOn));
         }
