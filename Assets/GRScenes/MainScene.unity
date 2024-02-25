@@ -153,10 +153,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj:
-  - {fileID: 5928999058556619764, guid: f4048d1c6614639458d2ce770aaac8de, type: 3}
+  - {fileID: 8029116009061891343, guid: 61ec50b052f06b0409837eb9c187b329, type: 3}
   size: 1
   WaitTime:
   - 30
+  speed:
+  - -3
 --- !u!4 &257781826
 Transform:
   m_ObjectHideFlags: 0

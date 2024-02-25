@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -7,6 +8,7 @@ public class Spawner : MonoBehaviour
     public GameObject[] obj;
     public int size;
     public float[] WaitTime;
+    public float[] speed;
     int i = 0;
     bool canSpawn = true;
    
@@ -26,7 +28,8 @@ public class Spawner : MonoBehaviour
        
         //while (true)
         {
-            Instantiate(obj[i]);
+            GameObject go = Instantiate(obj[i]);
+            go.GetComponent<BannerScript>().bannerSpeed = speed[i];
            
             canSpawn = false;
 
