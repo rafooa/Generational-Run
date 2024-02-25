@@ -249,7 +249,7 @@ public class Movement : MonoBehaviour
 
         if (canSwing)
         {
-            if (Input.GetKeyDown(KeyCode.G))
+            if (Input.GetButtonDown("grapple"))
             {
                 Vector2 Pos = (Vector2)hookpos.position;
                 _lineRenderer.SetPosition(0, Pos);
@@ -261,7 +261,7 @@ public class Movement : MonoBehaviour
 
             }
 
-            if (Input.GetKeyUp(KeyCode.G))
+            else if (Input.GetButtonUp("grapple"))
             {
                 _distanceJoint.enabled = false;
                 _lineRenderer.enabled = false;
@@ -306,48 +306,51 @@ public class Movement : MonoBehaviour
     }
     void Gravity()
     {
-/*        if (!gravityOn)
-        {
-            if (usage >= 0)
-            {
-                usage -= Time.deltaTime;
-            }
-            else
-            {
-                usage = timeU;
-                gravityOn = true;
-                cooldownON = true;
-                gravSign = 1f;
-                rb.gravityScale = 3 * gravSign;
-                src.PlayOneShot(clip2);
-                StartCoroutine(flip(gravityOn));
-            }
-        }
+        /*        if (!gravityOn)
+                {
+                    if (usage >= 0)
+                    {
+                        usage -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        usage = timeU;
+                        gravityOn = true;
+                        cooldownON = true;
+                        gravSign = 1f;
+                        rb.gravityScale = 3 * gravSign;
+                        src.PlayOneShot(clip2);
+                        StartCoroutine(flip(gravityOn));
+                    }
+                }
 
-        if (cooldownON)
+                if (cooldownON)
+                {
+                    if (cooldown >= 0)
+                    {
+                        cooldown -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        cooldown = timeCD;
+                        cooldownON = false;
+                    }
+                }
+
+        */
+        
+            
+        if (Input.GetButtonDown("Fire3") && gravityOn == true)
         {
-            if (cooldown >= 0)
-            {
-                cooldown -= Time.deltaTime;
-            }
-            else
-            {
-                cooldown = timeCD;
-                cooldownON = false;
-            }
-        }
-*/
-        if (Input.GetKeyDown("1") && gravityOn == true && cooldownON == false && coll.onGround == true)
-        {
+            Debug.Log("tri");
             gravityOn = false;
             gravSign = -1f;
             rb.gravityScale *= gravSign;
             oldColl = coll.bottomOffset;
-            coll.bottomOffset = new Vector2(coll.bottomOffset.x, 1);
             src.PlayOneShot(clip1);
             StartCoroutine(flip(gravityOn));
         }
-        if (Input.GetKeyDown("2") && gravityOn == false)
+        else if (Input.GetButtonDown("Fire3") && gravityOn == false)
         {
             gravityOn = true;
             usage = timeU;
@@ -362,7 +365,7 @@ public class Movement : MonoBehaviour
 
      void Attack()
     {
-        if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 1.5f /*&& !m_rolling*/) // CHANGED TIME SINCE ATTACK FOR PARRY COOLDOWN
+        if (Input.GetButtonDown("Fire2") && m_timeSinceAttack > 1.5f /*&& !m_rolling*/) // CHANGED TIME SINCE ATTACK FOR PARRY COOLDOWN
         {
             //m_currentAttack++;
 
